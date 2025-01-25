@@ -1,5 +1,5 @@
 #!/bin/sh
-
+#这是用来获取皎月官网的版本号的脚本
 # 网站的URL
 url="https://www.natpierce.cn/pc/downloads/index_new.html"
 
