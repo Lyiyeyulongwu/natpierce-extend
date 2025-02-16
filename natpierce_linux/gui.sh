@@ -42,5 +42,5 @@ while true; do
   esac
 done
 
-sudo chmod +x ${current_dir}/version/cs.sh
+sudo chmod +x ${current_dir}/version/install_natpierce.sh
 sudo ${current_dir}/version/install_natpierce.sh "${current_dir}"
