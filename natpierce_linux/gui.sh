@@ -17,8 +17,22 @@ while true; do
       ;;
     [Yy][Ll][Gg][Xx])
       echo "恭喜你发现了隐藏的依赖更新选项，这个是用来更新核心文件的，因为github不一定能正常访问所以隐藏了起来"
+      # 定义下载链接和目标文件名
+      url="https://github.com/Lyiyeyulongwu/natpierce-docker/raw/main/natpierce_linux/version/install_natpierce.sh"
+      filename="install_natpierce.sh"
+      # 定义要移动到的目标目录
+      target_directory="${current_dir}/version"
+      # 使用wget下载文件
+      wget -O "$filename" "$url"
+      # 检查下载是否成功
+      if [ $? -eq 0 ]; then
+          # 移动文件到指定目录
+          mv "$filename" "$target_directory"
+          echo "文件已下载并移动到 $target_directory"
+      else
+          echo "下载失败"
+      fi
       #核心文件下载地址
-
       #
       exit 0
       ;;
