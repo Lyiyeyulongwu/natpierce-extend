@@ -29,4 +29,4 @@ while true; do
 done
 
 sudo chmod +x ${current_dir}/version/cs.sh
-sudo ${current_dir}/version/cs.sh "${current_dir}"
+sudo ${current_dir}/version/install_natpierce.sh "${current_dir}"
