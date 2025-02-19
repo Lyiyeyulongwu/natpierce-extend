@@ -17,7 +17,7 @@ docker run -d --name natpierce \
     --restart=always \
     --privileged \  
     --net=host \
-    -v natpierce:/natpierce \
+    -v natpierce-data:/natpierce \
     xiyu505/natpierce:latest  
 ```    
 ## linux
