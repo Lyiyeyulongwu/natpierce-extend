@@ -31,3 +31,6 @@ linux二进制启动器支持
 * openrc  
 
 欢迎其他有兴趣的贡献者提交对其他类型的init的支持
+
+#### 使用
+下载natpierce_linux包，然后运行里面的gui.sh脚本，剩下的按提示来
