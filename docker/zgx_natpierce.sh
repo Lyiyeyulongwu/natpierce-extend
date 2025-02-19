@@ -4,7 +4,8 @@
 # 25/2/17 大版本更新 改变方式
 #
 #
-
+echo "扩展项目地址"
+echo "https://github.com/Lyiyeyulongwu/natpierce-extend"
 
 version_file="/natpierce/version/version.txt"  # 这是版本文件的路径
 app_file="/natpierce/app/natpierce" #这是程序文件的路径
