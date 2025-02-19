@@ -15,7 +15,7 @@ web端口号支持永久更改，更改环境变量webdkh即可,默认值为3327
 ```
 docker run -d --name natpierce \
     --restart=always \
-    --privileged \  
+    --privileged \
     --net=host \
     -v natpierce-data:/natpierce \
     xiyu505/natpierce:latest  
