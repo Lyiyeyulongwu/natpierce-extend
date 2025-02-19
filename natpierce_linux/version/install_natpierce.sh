@@ -70,7 +70,7 @@ case "$initprocess" in
   echo "初始化系统: $initprocess"
   init=systemd
   ;;
-  init|openrc-init)
+  openrc-init)
   echo "初始化系统: $initprocess"
   init=openrc
   ;;
