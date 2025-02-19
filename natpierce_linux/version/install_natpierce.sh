@@ -4,6 +4,8 @@
 #
 # 
 echo "测试版"
+echo "扩展项目地址"
+echo "https://github.com/Lyiyeyulongwu/natpierce-extend"
 echo "别问为什么没有皎月的标，问就是测试版"
 #预设环境组
 output_dir=$1 #引入启动脚本提供的定位参数
