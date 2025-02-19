@@ -19,5 +19,5 @@ linux二进制启动器支持
 启动器依赖init建立服务文件
 目前支持
 * systemd
-* openrc
+* openrc  
 欢迎其他有兴趣的贡献者提交对其他类型的init的支持
