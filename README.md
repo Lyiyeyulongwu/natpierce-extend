@@ -11,7 +11,8 @@
 web端口号支持永久更改，更改环境变量webdkh即可,默认值为33272  
 更改镜像组成，使在镜像不变的情况下，更新最新的皎月连版本，你只需要重启镜像即可  
 
-#### 使用命令：  
+#### docker run：  
+使用前请确认已安装docker
 ```
 docker run -d --name natpierce \
     --restart=always \
