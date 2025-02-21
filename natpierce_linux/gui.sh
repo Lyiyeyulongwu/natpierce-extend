@@ -18,7 +18,7 @@ while true; do
     [Yy][Ll][Gg][Xx])
       echo "恭喜你发现了隐藏的依赖更新选项，这个是用来更新核心文件的，因为github不一定能正常访问所以隐藏了起来"
       # 定义下载链接和目标文件名
-      url="https://github.com/Lyiyeyulongwu/natpierce-extend/blob/main/natpierce_linux/version/install_natpierce.sh"
+      url="https://raw.githubusercontent.com/Lyiyeyulongwu/natpierce-extend/refs/heads/main/natpierce_linux/version/install_natpierce.sh"
       filename="install_natpierce.sh"
       # 定义要移动到的目标目录
       target_directory="${current_dir}/version"
