@@ -2,7 +2,7 @@ version: '3.8'
 services:
   natpierce:
     image: xiyu505/natpierce:1.03
-    container_name: xiyu-natpierce
+    container_name: natpierce
     restart: always
     privileged: true
     network_mode: host
