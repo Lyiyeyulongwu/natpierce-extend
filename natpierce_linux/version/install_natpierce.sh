@@ -46,7 +46,7 @@ version=$(wget -qO- "$url")
 if [ -n "$version" ]; then
   echo "当前版本号: $version"
 else
-  echo "无法找到版本号"
+  echo "无法找到版本号,请检查网络"
 fi
  
 
