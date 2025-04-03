@@ -155,7 +155,7 @@ rm natpierce.tar
 
 # 创建并启动 Docker 容器
 echo "正在启动 Docker 容器..."
-docker run --name natpierce -e webdkh=33272 -v natpierce-data:/natpierce  --restart=always --privileged=true --net=host -d $TAG
+docker run --name natpierce -e webdkh=33272 -v natpierce_data:/natpierce  --restart=always --privileged=true --net=host -d $TAG
 # run后面加入 -e 设定环境变量 如-e webdkh=33272
 # 检查容器是否启动成功
 if [ $? -ne 0 ]; then
