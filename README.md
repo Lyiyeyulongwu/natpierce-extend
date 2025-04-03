@@ -18,11 +18,7 @@ docker run -d --name natpierce \
     --restart=always \
     --privileged \
     --net=host \
-<<<<<<< HEAD
-    -v natpierce_data:/app/natpierce \
-=======
     -v natpierce_data:/natpierce \
->>>>>>> 6835298 (优化docker配置)
     xiyu505/natpierce:latest  
 ```    
 ## Linux
@@ -39,4 +35,3 @@ linux二进制启动器支持
 
 #### 使用
 下载***natpierce_linux***包,然后运行里面的***gui.sh***脚本，剩下的按提示来
-
