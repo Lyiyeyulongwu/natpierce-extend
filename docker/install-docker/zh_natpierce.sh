@@ -21,8 +21,8 @@ EOF
 
 # 打印 ASCII 艺术文本
 echo "$art_text"
-echo "欢迎使用本脚本,脚本版本:0.9"
-echo "测试版施工标志，非测试人员等待正式版" #测试标志不要删除，正式版打上注释
+echo "欢迎使用本脚本,脚本版本:1.0"
+# echo "测试版施工标志，非测试人员等待正式版" #测试标志不要删除，正式版打上注释
 echo "制作:皎月连开发组"
 echo "皎月连官网：https://www.natpierce.cn"
 echo "运行脚本权限要求：可以使用docker命令的用户，如果权限不足可以使用sudo运行脚本"
@@ -81,8 +81,6 @@ while true; do
   case "$user_input" in
     [Yy][Ee][Ss])
       echo "您选择了继续。"
-      #Version是赋值给容器版本号的VERSION环境变量，用来指示容器内下载的皎月版本
-      Version="$version"
       break
       ;;
     [Nn][Oo])
@@ -95,19 +93,16 @@ while true; do
   esac
 done
 
-#检查变量非空，这一部分虽然可能是多余的
-default_version="1.03"
-if [ -z "$VERSION" ]; then
-  VERSION=$default_version
-fi
 
 #这是镜像版本号，如果使用环境变量更新镜像请更改这里
-VERSION_jx="1.03"
+VERSION_jx="latest" #本项目开始转向永久镜像
+
+#natpierce-amd64-latest.tar 示例镜像包名
 
 # 定义不同架构的下载链接和镜像标签
-URL_AMD64="https://natpierce.oss-cn-beijing.aliyuncs.com/docker/natpierce-amd64-v${VERSION_jx}.tar"
-URL_ARM64="https://natpierce.oss-cn-beijing.aliyuncs.com/docker/natpierce-arm64-v${VERSION_jx}.tar"
-URL_ARM32="https://natpierce.oss-cn-beijing.aliyuncs.com/docker/natpierce-arm32-v${VERSION_jx}.tar"
+URL_AMD64="https://natpierce.oss-cn-beijing.aliyuncs.com/docker/natpierce-amd64-${VERSION_jx}.tar"
+URL_ARM64="https://natpierce.oss-cn-beijing.aliyuncs.com/docker/natpierce-arm64-${VERSION_jx}.tar"
+URL_ARM32="https://natpierce.oss-cn-beijing.aliyuncs.com/docker/natpierce-arm32-${VERSION_jx}.tar"
 TAG_AMD64="natpierce:amd64"
 TAG_ARM64="natpierce:arm64"
 TAG_ARM32="natpierce:arm32"
@@ -160,12 +155,12 @@ rm natpierce.tar
 
 # 创建并启动 Docker 容器
 echo "正在启动 Docker 容器..."
-docker run -it --name natpierce --restart=always --privileged=true --net=host -d $TAG
-# run后面加入 -e 设定环境变量 如 -e VERSION=$Version -e webdkh=33272
+docker run --name natpierce -e webdkh=33272 -v natpierce-data:/natpierce  --restart=always --privileged=true --net=host -d $TAG
+# run后面加入 -e 设定环境变量 如-e webdkh=33272
 # 检查容器是否启动成功
 if [ $? -ne 0 ]; then
     echo "启动 Docker 容器失败。请检查是否存在重复容器"
     exit 1
 fi
 echo "Docker容器启动成功"
-printf "这里是docker版本的介绍文本。\n特性：\nDocker容器启动成功后web面板默认端口号33272，如要更改（等待正式）\n"
+printf "这里是docker版本的介绍文本。\n特性：\nDocker容器启动成功后web面板默认端口号33272，如要更改,修改容器的环境变量webdkh\n在本机上访问http://127.0.0.1:33272即可访问皎月连的web页面,局域网访问请更换为局域网ip\n"
