@@ -8,10 +8,6 @@ services:
     environment:
       webdkh: "33272"
     volumes:
-<<<<<<< HEAD
-      - data:/app/natpierce
-=======
       - data:/natpierce
->>>>>>> 6835298 (优化docker配置)
 volumes:
   data:

@@ -7,8 +7,8 @@
 echo "扩展项目地址"
 echo "https://github.com/Lyiyeyulongwu/natpierce-extend"
 
-version_file="/app/natpierce/version.txt"  # 这是版本文件的路径
-app_file="/app/natpierce/natpierce" #这是程序文件的路径
+version_file="/natpierce/version.txt"  # 这是版本文件的路径
+app_file="/natpierce/natpierce" #这是程序文件的路径
 
 #最新版本号
 echo "开始获取官网最新版本号"
@@ -78,15 +78,15 @@ else
       exit 1
     fi
     # 移动 natpierce 二进制文件到工作目录
-    mkdir -p "/app/natpierce"
-    if mv natpierce /app/natpierce/natpierce; then
+    mkdir -p "/natpierce/"
+    if mv natpierce /natpierce/natpierce; then
         echo "natpierce 二进制文件已成功移动到工作目录。"
-        chmod +x /app/natpierce/natpierce
-        echo "$version" > "/app/natpierce/version.txt"
+        chmod +x /natpierce/natpierce
+        echo "$version" > "/natpierce/version.txt"
     else
         echo "移动 natpierce 二进制文件失败。"
         exit 1
     fi
 fi
 
-/app/natpierce/natpierce -p $webdkh
+/natpierce/natpierce -p $webdkh
