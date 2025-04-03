@@ -8,6 +8,6 @@ services:
     environment:
       webdkh: "33272"
     volumes:
-      - data:/app
+      - data:/app/natpierce
 volumes:
   data:
