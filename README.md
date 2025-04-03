@@ -18,7 +18,11 @@ docker run -d --name natpierce \
     --restart=always \
     --privileged \
     --net=host \
+<<<<<<< HEAD
     -v natpierce_data:/app/natpierce \
+=======
+    -v natpierce_data:/natpierce \
+>>>>>>> 6835298 (优化docker配置)
     xiyu505/natpierce:latest  
 ```    
 ## Linux
