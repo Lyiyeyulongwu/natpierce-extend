@@ -19,7 +19,7 @@ docker run -d --name natpierce \
     --privileged \
     --net=host \
     -v natpierce_data:/natpierce \
-    xiyu505/natpierce:latest  
+    xiyu505/natpierce:latest
 ```    
 ## Linux
 linux二进制启动器支持
