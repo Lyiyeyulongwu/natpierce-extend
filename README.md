@@ -20,7 +20,24 @@ docker run -d --name natpierce \
     --net=host \
     -v natpierce_data:/natpierce \
     xiyu505/natpierce:latest  
-```    
+```
+#### docker compose：  
+使用前请确认已安装docker compose
+```
+services:
+  natpierce:
+    image: xiyu505/natpierce:latest
+    container_name: natpierce
+    restart: always
+    privileged: true
+    network_mode: host
+    environment:
+      webdkh: "33272"
+    volumes:
+      - data:/natpierce
+volumes:
+  data:
+```  
 ## Linux
 linux二进制启动器支持
 ### 介绍
