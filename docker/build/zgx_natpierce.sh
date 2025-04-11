@@ -10,6 +10,16 @@ echo "https://github.com/Lyiyeyulongwu/natpierce-extend"
 version_file="/natpierce/version.txt"  # 这是版本文件的路径
 app_file="/natpierce/natpierce" #这是程序文件的路径
 
+#开启ip转发功能
+echo 1 > /proc/sys/net/ipv4/ip_forward
+#检测
+if [ $(cat /proc/sys/net/ipv4/ip_forward) -eq 1 ]; then
+  echo "IP转发已开启。"
+else
+  echo "IP转发未开启。"
+  exit 1
+fi
+
 #最新版本号
 echo "开始获取官网最新版本号"
 
