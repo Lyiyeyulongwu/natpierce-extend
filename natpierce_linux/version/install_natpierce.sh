@@ -188,6 +188,13 @@ else
   exit 1
 fi
 
+#检测ip转发功能是否开启
+if [ $(cat /proc/sys/net/ipv4/ip_forward) -eq 1 ]; then
+  echo "IP转发已开启。"
+else
+  echo "IP转发未开启。"
+fi
+
 # 获取 PID 1 进程的名称
 initprocess=$(ps -p 1 -o comm=)
 # 根据进程名称判断 init 系统

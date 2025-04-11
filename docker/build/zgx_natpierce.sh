@@ -17,7 +17,6 @@ if [ $(cat /proc/sys/net/ipv4/ip_forward) -eq 1 ]; then
   echo "IP转发已开启。"
 else
   echo "IP转发未开启。"
-  exit 1
 fi
 
 #最新版本号
