@@ -1,5 +1,5 @@
 FROM alpine
-RUN apk add --no-cache tzdata
+RUN apk add --no-cache tzdata iptables
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 COPY zgx_natpierce.sh /version/zgx_natpierce.sh
 RUN chmod +x /version/zgx_natpierce.sh

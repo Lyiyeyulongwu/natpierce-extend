@@ -2,26 +2,38 @@
 #请保留各版本注释
 #项目版本于1.03版本构建，建立日期: 25/1/19 脚本编辑: xiyu505
 # 25/2/17 大版本更新 改变方式
-#
-#
+# 25/5/9 点对网支持
+
 echo "扩展项目地址"
 echo "https://github.com/Lyiyeyulongwu/natpierce-extend"
 
 version_file="/natpierce/version.txt"  # 这是版本文件的路径
 app_file="/natpierce/natpierce" #这是程序文件的路径
 
-#开启ip转发功能
+# 开启ip转发功能
 echo 1 > /proc/sys/net/ipv4/ip_forward
-#检测
+# 检测
 if [ $(cat /proc/sys/net/ipv4/ip_forward) -eq 1 ]; then
   echo "IP转发已开启。"
 else
   echo "IP转发未开启。"
 fi
 
-#最新版本号
-echo "开始获取官网最新版本号"
+# 添加iptables规则
+# 检查第一条规则是否存在
+if ! iptables -C FORWARD -i eth0 -o natpierce -m state --state RELATED,ESTABLISHED -j ACCEPT 2>/dev/null; then
+ iptables -A FORWARD -i eth0 -o natpierce -m state --state RELATED,ESTABLISHED -j ACCEPT
+ echo "添加了第一条iptables规则。"
+fi
 
+# 检查第二条规则是否存在
+if ! iptables -C FORWARD -i natpierce -o eth0 -j ACCEPT 2>/dev/null; then
+ iptables -A FORWARD -i natpierce -o eth0 -j ACCEPT
+ echo "添加了第二条iptables规则。"
+fi
+
+# 最新版本号
+echo "开始获取官网最新版本号"
 
 # 网站的URL
 url="https://www.natpierce.cn/tempdir/info/version.html"
@@ -34,8 +46,6 @@ if [ -n "$version" ]; then
 else
   echo "无法找到版本号"
 fi
-
-
 
 # 定义基础URL
 base_url="https://natpierce.oss-cn-beijing.aliyuncs.com/linux"
@@ -63,9 +73,8 @@ esac
 # 构建完整的下载URL
 URL="${base_url}/${file}"
 
-
 # 检查版本文件是否存在且内容是否与当前版本一致
-if [ -f "$version_file" ] && [ "$(cat "$version_file")" = "$version" ] &&[ -f "$app_file" ]; then
+if [ -f "$version_file" ] && [ "$(cat "$version_file")" = "$version" ] && [ -f "$app_file" ]; then
     echo "版本文件存在且内容与当前版本一致。"
     version_txt=$(cat "$version_file")
     echo "本地版本号为$version_txt"
