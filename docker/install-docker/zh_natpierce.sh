@@ -94,15 +94,11 @@ while true; do
 done
 
 
-#这是镜像版本号，如果使用环境变量更新镜像请更改这里
-VERSION_jx="latest" #本项目开始转向永久镜像
-
-#natpierce-amd64-latest.tar 示例镜像包名
 
 # 定义不同架构的下载链接和镜像标签
-URL_AMD64="https://natpierce.oss-cn-beijing.aliyuncs.com/docker/natpierce-amd64-${VERSION_jx}.tar"
-URL_ARM64="https://natpierce.oss-cn-beijing.aliyuncs.com/docker/natpierce-arm64-${VERSION_jx}.tar"
-URL_ARM32="https://natpierce.oss-cn-beijing.aliyuncs.com/docker/natpierce-arm32-${VERSION_jx}.tar"
+URL_AMD64="https://natpierce.oss-cn-beijing.aliyuncs.com/docker/natpierce-amd64-v${version}.tar"
+URL_ARM64="https://natpierce.oss-cn-beijing.aliyuncs.com/docker/natpierce-arm64-v${version}.tar"
+URL_ARM32="https://natpierce.oss-cn-beijing.aliyuncs.com/docker/natpierce-arm32-v${version}.tar"
 TAG_AMD64="natpierce:amd64"
 TAG_ARM64="natpierce:arm64"
 TAG_ARM32="natpierce:arm32"
