@@ -99,9 +99,9 @@ done
 URL_AMD64="https://natpierce.oss-cn-beijing.aliyuncs.com/docker/natpierce-amd64-v${version}.tar"
 URL_ARM64="https://natpierce.oss-cn-beijing.aliyuncs.com/docker/natpierce-arm64-v${version}.tar"
 URL_ARM32="https://natpierce.oss-cn-beijing.aliyuncs.com/docker/natpierce-arm32-v${version}.tar"
-TAG_AMD64="natpierce:amd64"
-TAG_ARM64="natpierce:arm64"
-TAG_ARM32="natpierce:arm32"
+TAG_AMD64="xiyu505/natpierce:amd64"
+TAG_ARM64="xiyu505/natpierce:arm64"
+TAG_ARM32="xiyu505/natpierce:arm32"
 
 # 检测系统架构
 ARCH=$(uname -m)
