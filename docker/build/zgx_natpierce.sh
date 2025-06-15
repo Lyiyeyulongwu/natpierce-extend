@@ -10,15 +10,20 @@ echo "https://github.com/Lyiyeyulongwu/natpierce-extend"
 version_file="/natpierce/version.txt"  # 这是版本文件的路径
 app_file="/natpierce/natpierce" #这是程序文件的路径
 
-# 开启ip转发功能
-echo 1 > /proc/sys/net/ipv4/ip_forward
-# 检测
-if [ $(cat /proc/sys/net/ipv4/ip_forward) -eq 1 ]; then
-  echo "IP转发已开启。"
-else
-  echo "IP转发未开启。"
-fi
+# 检查当前IP转发状态
+current_state=$(cat /proc/sys/net/ipv4/ip_forward)
 
+if [ "$current_state" -eq 1 ]; then
+  echo "IP转发已经开启。"
+else
+  echo "IP转发未开启，正在开启..."
+  echo 1 > /proc/sys/net/ipv4/ip_forward
+  if [ "$(cat /proc/sys/net/ipv4/ip_forward)" -eq 1 ]; then
+    echo "IP转发已成功开启。"
+  else
+    echo "IP转发开启失败。"
+  fi
+fi
 # 添加iptables规则
 # 检查第一条规则是否存在
 if ! iptables -C FORWARD -i eth0 -o natpierce -m state --state RELATED,ESTABLISHED -j ACCEPT 2>/dev/null; then
