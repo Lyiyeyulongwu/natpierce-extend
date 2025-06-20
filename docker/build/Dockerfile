@@ -4,6 +4,8 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 COPY zgx_natpierce.sh /version/zgx_natpierce.sh
 RUN chmod +x /version/zgx_natpierce.sh
 ENV webdkh=33272
+ENV update=true
+ENV customversion=null
 WORKDIR /natpierce
 LABEL org.opencontainers.image.authors="Lyiyeyulongwu"
 LABEL org.opencontainers.image.source="https://github.com/Lyiyeyulongwu/natpierce-extend"

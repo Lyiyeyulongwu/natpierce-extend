@@ -37,20 +37,34 @@ if ! iptables -C FORWARD -i natpierce -o eth0 -j ACCEPT 2>/dev/null; then
  echo "添加了第二条iptables规则。"
 fi
 
-# 最新版本号
-echo "开始获取官网最新版本号"
+#更新
 
 # 网站的URL
 url="https://www.natpierce.cn/tempdir/info/version.html"
 
-# 使用wget获取版本号
-version=$(wget -qO- "$url")
-
-if [ -n "$version" ]; then
-  echo "当前版本号: $version"
+if [ "x${update}" = "xtrue" ]; then
+    echo "开始获取官网最新版本号"
+    version=$(wget -qO- "$url")
+    if [ -n "${version}" ]; then
+        echo "获取当前版本号: ${version}"
+    else
+        echo "无法找到版本号"
+        exit 1
+    fi
+elif [ "x${update}" = "xfalse" ]; then
+    if [ "x${customversion}" = "xnull" ]; then
+        echo "错误: customversion 不能为 null"
+        exit 1
+    else
+        echo "使用自定义版本号"
+        version="${customversion}"
+    fi
 else
-  echo "无法找到版本号"
+    echo "错误: update 的值必须是 'true' 或 'false'"
+    exit 1
 fi
+
+echo "使用版本号: ${version}"
 
 # 定义基础URL
 base_url="https://natpierce.oss-cn-beijing.aliyuncs.com/linux"
