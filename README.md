@@ -35,6 +35,8 @@ services:
     network_mode: host
     environment:
       webdkh: "33272"
+      update: "true"
+      customversion: "null"
     volumes:
       - data:/natpierce
 volumes:
