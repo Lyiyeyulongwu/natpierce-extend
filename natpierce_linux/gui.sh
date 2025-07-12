@@ -1,7 +1,12 @@
 #!/bin/sh
-#让gui界面选择运行脚本时能够弹出终端
+
+# 让gui界面选择运行脚本时能够弹出终端
 
 current_dir=$(dirname "$(readlink -f "$0")")
+
+# 确保目标目录存在
+target_directory="${current_dir}/version"
+mkdir -p "$target_directory"
 
 while true; do
   printf "请输入 'yes' 或 'no' 来确认是否继续: "
@@ -20,8 +25,6 @@ while true; do
       # 定义下载链接和目标文件名
       url="https://raw.githubusercontent.com/Lyiyeyulongwu/natpierce-extend/refs/heads/main/natpierce_linux/version/install_natpierce.sh"
       filename="install_natpierce.sh"
-      # 定义要移动到的目标目录
-      target_directory="${current_dir}/version"
       # 使用wget下载文件
       wget -O "$filename" "$url"
       # 检查下载是否成功
@@ -31,8 +34,9 @@ while true; do
           echo "文件已下载并移动到 $target_directory"
       else
           echo "下载失败"
+          exit 1
       fi
-      #核心文件下载地址
+      # 核心文件下载地址
       #
       exit 0
       ;;
@@ -42,5 +46,7 @@ while true; do
   esac
 done
 
-sudo chmod +x ${current_dir}/version/install_natpierce.sh
-sudo ${current_dir}/version/install_natpierce.sh "${current_dir}"
+# 确保脚本有执行权限
+sudo chmod +x "${current_dir}/version/install_natpierce.sh"
+# 执行安装脚本
+sudo "${current_dir}/version/install_natpierce.sh" "${current_dir}"
