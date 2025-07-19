@@ -56,3 +56,19 @@ linux二进制启动器支持
 
 #### 使用
 下载***natpierce_linux***包,然后运行里面的***gui.sh***脚本，剩下的按提示来
+
+
+## 1panel本地应用
+将应用目录上传到 1Panel 的 /opt/1panel/resource/apps/local 文件夹下
+注意：/opt 为 1Panel 默认安装目录，请根据自己的实际情况修改
+上传完成后，目录结构如下
+```  
+├──natpierce 
+	├── logo.png 
+	├── data.yml
+	├── README.md 
+	├── latest_1.0 
+	    ├── data.yml 
+	    └── docker-compose.yml
+```        
+在 1Panel 应用商店中，点击更新应用列表按钮同步本地应用
