@@ -196,21 +196,36 @@ else
 fi
 
 # 获取 PID 1 进程的名称
-initprocess=$(ps -p 1 -o comm=)
+initprocess=$(cat "/proc/1/comm")
 # 根据进程名称判断 init 系统
 case "$initprocess" in
   systemd)
-  echo "初始化系统: $initprocess"
-  init=systemd
-  ;;
-  openrc-init)
-  echo "初始化系统: $initprocess"
-  init=openrc
-  ;;
+    echo "初始化系统: systemd"
+    init=systemd
+    ;;
+  init)
+    if [ -f "/sbin/openrc" ] || [ -d "/etc/runlevels" ]; then
+        echo "初始化系统: OpenRC"
+        init=openrc
+    elif [ -f "/etc/inittab" ] && [ -d "/etc/init.d" ]; then
+        echo "不支持皎月自启动功能的初始化系统: SysVinit"
+        exit 1
+    elif [ -f "/sbin/upstart" ] || [ -d "/etc/init" ]; then
+        echo "不支持皎月自启动功能的初始化系统: Upstart"
+        exit 1
+    else
+        echo "不支持皎月自启动功能的初始化系统: 未知 init 变体"
+        exit 1
+    fi
+    ;;
+  procd)
+    echo "不支持皎月自启动功能的初始化系统: procd"
+    exit 1
+    ;;      
   *)
-  echo "不支持皎月自启动功能的初始化系统: $initprocess"
-  exit 1
-  ;;
+    echo "不支持皎月自启动功能的初始化系统: $initprocess"
+    exit 1
+    ;;
 esac
 }
 #检查本地端口号预设模块
@@ -304,20 +319,27 @@ EOF
   cat << EOF > /etc/init.d/natpierce
 #!/sbin/openrc-run
 
-depend() {
-    need net
-}
+description="NatPierce Network Tunneler"
+
+procname="natpierce"
 
 start() {
-    ebegin "Starting natpierce"
-    $new_script_path
+    ebegin "Starting \${procname}"
+    "$new_script_path" >/dev/null 2>&1 &
     eend \$?
 }
 
 stop() {
-    ebegin "Stopping natpierce"
+    ebegin "Stopping \${procname}"
+    start-stop-daemon --stop --quiet --name "\${procname}" --retry TERM/10/KILL/5
     eend \$?
 }
+
+status() {
+    start-stop-daemon --status --name "\${procname}"
+    return \$?
+}
+
 EOF
 
     # 给脚本执行权限
