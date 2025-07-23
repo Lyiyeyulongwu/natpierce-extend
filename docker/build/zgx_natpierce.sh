@@ -1,11 +1,4 @@
 #!/bin/sh
-#请保留各版本注释
-#项目版本于1.03版本构建，建立日期: 25/1/19 脚本编辑: xiyu505
-# 25/2/17 大版本更新 改变方式
-# 25/5/9 点对网支持
-
-echo "扩展项目地址"
-echo "https://github.com/Lyiyeyulongwu/natpierce-extend"
 
 version_file="/natpierce/version.txt"  # 这是版本文件的路径
 app_file="/natpierce/natpierce" #这是程序文件的路径
@@ -24,6 +17,23 @@ else
     echo "IP转发开启失败。"
   fi
 fi
+
+if /usr/sbin/iptables -L >/dev/null 2>&1; then
+  echo "nftables后端"
+  export iptables_mode="nftables"
+elif /usr/sbin/iptables-legacy -L >/dev/null 2>&1; then
+  echo "legacy后端"
+  export iptables_mode="legacy"
+else
+  echo "请检查容器是否启用特权模式"
+  exit 1
+fi
+
+install /version/iptables.sh /usr/local/bin/iptables
+install /version/iptables.sh /usr/local/bin/iptables-nft
+install /version/iptables.sh /usr/local/bin/iptables-legacy
+
+
 # 添加iptables规则
 # 检查第一条规则是否存在
 if ! iptables -C FORWARD -i eth0 -o natpierce -m state --state RELATED,ESTABLISHED -j ACCEPT 2>/dev/null; then
@@ -36,6 +46,8 @@ if ! iptables -C FORWARD -i natpierce -o eth0 -j ACCEPT 2>/dev/null; then
  iptables -A FORWARD -i natpierce -o eth0 -j ACCEPT
  echo "添加了第二条iptables规则。"
 fi
+
+iptables -V
 
 #更新
 
@@ -125,5 +137,9 @@ else
         exit 1
     fi
 fi
+
+
+echo "扩展项目github地址,如果可以,麻烦给个star"
+echo "https://github.com/Lyiyeyulongwu/natpierce-extend"
 
 /natpierce/natpierce -p $webdkh
