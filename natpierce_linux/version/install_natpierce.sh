@@ -64,18 +64,26 @@ case "$arch" in
   x86_64)
     URL=$URL_AMD64
     ;;
-  aarch64)
+  aarch64 | arm64)
     URL=$URL_ARM64
     ;;
-  arm*)
+  armv7*)
     URL=$URL_ARM32
     ;;
+  arm*)
+    echo "不支持的架构: $arch"
+    exit 1
+    ;;
+  i386 | i686)
+    echo "不支持的架构: $arch"
+    exit 1
+    ;;        
   mips)
     URL=$URL_mips
     ;;
   mipsel)
     URL=$URL_mipsel
-    ;;
+    ;;    
   *)
     echo "不支持的架构: $arch"
     exit 1

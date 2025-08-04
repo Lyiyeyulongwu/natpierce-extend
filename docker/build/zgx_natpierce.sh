@@ -92,7 +92,7 @@ case "$arch" in
   aarch64)
     file="natpierce-arm64-v${version}.tar.gz"
     ;;
-  arm*)
+  armv7*)
     file="natpierce-arm32-v${version}.tar.gz"
     ;;
   *)
