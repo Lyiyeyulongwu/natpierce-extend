@@ -138,8 +138,37 @@ else
     fi
 fi
 
+cat << EOF
 
-echo "扩展项目github地址,如果可以,麻烦给个star"
-echo "https://github.com/Lyiyeyulongwu/natpierce-extend"
+=================================================
+          natpierce 容器启动 - 重要提示
+=================================================
+
+感谢您使用 natpierce！
+
+为确保服务正常运行，请注意以下几点：
+
+1.  [容器权限] 本容器需要修改系统网络设置，因此必须以特权模式
+    (--privileged) 或拥有 NET_ADMIN 能力启动。
+    示例: docker run -d --privileged ...
+
+2.  [Web 端口] 您可以通过环境变量 'webdkh' 自定义 Web 服务的端口。
+    示例: docker run -d -e webdkh=33272 ...
+
+3.  [访问地址] Web 服务默认监听容器内的 0.0.0.0。
+    - 若在 Docker 主机上访问，请使用 'localhost' 或 '127.0.0.1'。
+    - 若从其他设备访问，请使用 Docker 主机的局域网 IP 地址。
+
+4.  [故障排除] 访问失败时，请检查：
+    - 使用桥接模式时 端口是否已正确映射到主机 (-p 参数)。
+    - Docker Desktop for Mac/Windows 用户，请确保在设置开启host网络支持。
+    - 主机防火墙是否放行了相应端口。
+
+5.  [项目支持] 如果本项目对您有帮助，欢迎在 GitHub 上给我们一个 star！
+    项目地址: https://github.com/Lyiyeyulongwu/natpierce-extend
+
+=================================================
+EOF
+
 
 /natpierce/natpierce -p $webdkh
