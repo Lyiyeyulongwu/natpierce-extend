@@ -300,7 +300,7 @@ def_script_content=$(cat <<EOF
 # start_natpierce.sh
 
 # 启动程序
-"${output_dir}/app/natpierce" -p ${selectedport} > ${output_dir}/version/natpierce.log  2>&1 
+exec "${output_dir}/app/natpierce" -p ${selectedport} > ${output_dir}/version/natpierce.log  2>&1 
 EOF
 )
 
@@ -334,26 +334,21 @@ EOF
 #!/sbin/openrc-run
 
 description="NatPierce Network Tunneler"
-
-procname="natpierce"
+command="$new_script_path"
+pidfile="/run/\${RC_SVCNAME}.pid"
+command_background=true
 
 start() {
-    ebegin "Starting \${procname}"
-    "$new_script_path" >/dev/null 2>&1 &
+    ebegin "Starting \${RC_SVCNAME}"
+    start-stop-daemon --start --exec "\$command" --pidfile "\$pidfile" --background --make-pidfile
     eend \$?
 }
 
 stop() {
-    ebegin "Stopping \${procname}"
-    start-stop-daemon --stop --quiet --name "\${procname}" --retry TERM/10/KILL/5
+    ebegin "Stopping \${RC_SVCNAME}"
+    start-stop-daemon --stop --pidfile "\$pidfile" --retry TERM/10/KILL/5
     eend \$?
 }
-
-status() {
-    start-stop-daemon --status --name "\${procname}"
-    return \$?
-}
-
 EOF
 
     # 给脚本执行权限
