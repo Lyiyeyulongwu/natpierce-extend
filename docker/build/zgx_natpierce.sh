@@ -147,6 +147,13 @@ else
   echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 fi
 
+#检测是否host模式
+if ip link show docker0 >/dev/null 2>&1; then
+    echo "[当前是host]"
+else
+    echo "[不是host]"
+fi
+
 cat << EOF
 
 =================================================
