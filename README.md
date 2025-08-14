@@ -1,5 +1,5 @@
 # natpierce-extend
-[gituhub仓库地址](https://github.com/Lyiyeyulongwu/natpierce-extend "https://github.com/Lyiyeyulongwu/natpierce-extend")
+[gituhub仓库地址](https://github.com/XingHeYuZhuan/natpierce-extend "https://github.com/XingHeYuZhuan/natpierce-extend")
 
 ## docker
 皎月连docker扩展

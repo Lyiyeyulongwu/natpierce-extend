@@ -27,7 +27,7 @@ EOF
 # 打印 ASCII 艺术文本
 echo "$art_text"
 echo "扩展项目地址"
-echo "https://github.com/Lyiyeyulongwu/natpierce-extend"
+echo "https://github.com/XingHeYuZhuan/natpierce-extend"
 echo "欢迎使用"
 }
 

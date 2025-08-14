@@ -23,7 +23,7 @@ while true; do
     [Yy][Ll][Gg][Xx])
       echo "恭喜你发现了隐藏的依赖更新选项，这个是用来更新核心文件的，因为github不一定能正常访问所以隐藏了起来"
       # 定义下载链接和目标文件名
-      url="https://raw.githubusercontent.com/Lyiyeyulongwu/natpierce-extend/refs/heads/main/natpierce_linux/version/install_natpierce.sh"
+      url="https://raw.githubusercontent.com/XingHeYuZhuan/natpierce-extend/refs/heads/main/natpierce_linux/version/install_natpierce.sh"
       filename="install_natpierce.sh"
       # 使用wget下载文件
       wget -O "$filename" "$url"
