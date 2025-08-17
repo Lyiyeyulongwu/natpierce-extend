@@ -362,6 +362,28 @@ EOF
 esac
 }
 
+service_rm(){
+
+case "$init" in
+  systemd)
+    if [ -f /etc/systemd/system/natpierce.service ]; then
+      rm /etc/systemd/system/natpierce.service
+      systemctl daemon-reload
+      echo "已删除 natpierce.service (systemd)"
+    else
+      echo "提示：文件 /etc/systemd/system/natpierce.service 不存在"
+    fi
+    ;;
+  openrc)
+    if [ -f /etc/init.d/natpierce ]; then
+      rm /etc/init.d/natpierce
+      echo "已删除 /etc/init.d/natpierce (OpenRC)"
+    else
+      echo "提示：文件 /etc/init.d/natpierce 不存在"
+    fi
+    ;;
+}
+
 #预设命令模块
 service_command() {
 SERVICENAME="natpierce" # 服务名称
@@ -408,6 +430,7 @@ echo "4. 停止服务"
 echo "5. 重启服务"
 echo "6. 设置端口号(将停止服务)"
 echo "7. 退出选择"
+echo "8. 删除服务文件(删除文件夹前使用)"
 }
 
 # 主程序
@@ -460,6 +483,13 @@ while true; do
             echo "退出程序"
             break
             ;;
+        8)
+            echo "开始执行清除流程"
+            $DISABLECMD
+            $STOPCMD
+            service_rm
+            state
+            ;;    
         *)
             echo "无效的选择，请重新输入。"
             ;;

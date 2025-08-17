@@ -2,6 +2,25 @@
 
 # 让gui界面选择运行脚本时能够弹出终端
 
+run_as_root() {
+    if [ "$(id -u)" -eq 0 ]; then
+        echo "[INFO] 正在以 root 权限执行: $1"
+        eval "$1"
+    else
+        echo "[INFO] 需要管理员权限来执行: $1"
+        if command -v sudo >/dev/null 2>&1; then
+            # sudo 存在，尝试使用 sudo 执行
+            echo "[INFO] 检测到 sudo，将使用它来提权。"
+            sudo sh -c "$1"
+        else
+            echo "[ERROR] 需要管理员权限，但 'sudo' 命令未找到。"
+            echo "[ERROR] 请以 root 用户身份运行此脚本，或安装 sudo 并配置好权限。"
+            exit 1
+        fi
+    fi
+}
+
+
 current_dir=$(dirname "$(readlink -f "$0")")
 
 # 确保目标目录存在
@@ -36,8 +55,6 @@ while true; do
           echo "下载失败"
           exit 1
       fi
-      # 核心文件下载地址
-      #
       exit 0
       ;;
     *)
@@ -47,6 +64,6 @@ while true; do
 done
 
 # 确保脚本有执行权限
-sudo chmod +x "${current_dir}/version/install_natpierce.sh"
+run_as_root "chmod +x '${current_dir}/installnatpierce.sh'"
 # 执行安装脚本
-sudo "${current_dir}/version/install_natpierce.sh" "${current_dir}"
+run_as_root "'${current_dir}/installnatpierce.sh' '${current_dir}'"
