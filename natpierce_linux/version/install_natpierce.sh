@@ -362,7 +362,7 @@ EOF
 esac
 }
 
-service_rm(){
+service_rm() {
 
 case "$init" in
   systemd)
@@ -382,6 +382,7 @@ case "$init" in
       echo "提示：文件 /etc/init.d/natpierce 不存在"
     fi
     ;;
+esac    
 }
 
 #预设命令模块
@@ -410,6 +411,7 @@ case "$init" in
     ;;
 esac
 }
+
 state() {
 # 检查操作结果
 if [ $? -eq 0 ]; then
