@@ -64,6 +64,6 @@ while true; do
 done
 
 # 确保脚本有执行权限
-run_as_root "chmod +x '${current_dir}/installnatpierce.sh'"
+run_as_root "chmod +x '${current_dir}/install_natpierce.sh'"
 # 执行安装脚本
-run_as_root "'${current_dir}/installnatpierce.sh' '${current_dir}'"
+run_as_root "'${current_dir}/install_natpierce.sh' '${current_dir}'"
