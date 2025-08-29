@@ -75,9 +75,10 @@ fi
 echo "下载完成: $FILENAME"
 echo ""
 
+echo "正在更新列表..."
+$UPDGRDE
 # 执行安装
 echo "正在安装软件包..."
-$UPDGRDE
 $INSTALL_CMD "$FILENAME"
 
 # 清理下载的安装包

@@ -55,7 +55,7 @@ echo "开始获取官网最新版本号"
 
 
 # 网站的URL
-url="https://www.natpierce.cn/tempdir/info/version.html"
+url="https://natpierce.oss-cn-beijing.aliyuncs.com/update/version.txt"
 
 # 使用wget获取版本号
 version=$(wget -qO- "$url")

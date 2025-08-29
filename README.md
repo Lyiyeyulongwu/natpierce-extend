@@ -1,5 +1,5 @@
 # natpierce-extend
-[gituhub仓库地址](https://github.com/XingHeYuZhuan/natpierce-extend "https://github.com/XingHeYuZhuan/natpierce-extend")
+[gituhub仓库地址](https://github.com/natpierce/natpierce-extend "https://github.com/natpierce/natpierce-extend")
 
 ## Linux
 linux二进制启动器支持
