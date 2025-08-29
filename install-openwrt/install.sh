@@ -35,7 +35,7 @@ if command -v apk >/dev/null 2>&1; then
 elif command -v opkg >/dev/null 2>&1; then
     echo "检测到 opkg 包管理器，将下载 .ipk 格式软件包。"
     PACKAGE_SUFFIX="ipk"
-    UPDGRDE="opkg upgrade"
+    UPDGRDE="opkg update"
     INSTALL_CMD="opkg install"
 else
     echo "未检测到可用的包管理器 (apk 或 opkg)。"
